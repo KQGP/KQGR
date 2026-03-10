@@ -1,0 +1,91 @@
+                    WIRING DIAGRAM - KQR
+    ======================================================
+    
+                    EXTERNAL 5V POWER SUPPLY
+                    [     (+)    (-)     ]
+                         |        |
+                         |        +-------------------+
+                         |                            |
+                    +----+---------------------+      |
+                    |    |                     |      |
+                    |  SERVO MOTOR             |      |
+                    |  [5V] [GND] [SIGNAL]     |      |
+                    |   |     |       |         |      |
+                    |   |     |       |         |      |
+                    +---+-----+-------+---------+      |
+                        |     |       |                |
+                        |     |       |                |
+                    +---+-----+-------+--------------+ |
+                    |   |     |       |              | |
+                    |   |     |    D5 (GPIO14)       | |
+                    |   |     |       |              | |
+                    |   |     +-------+              | |
+                    |   |                            | |
+                    |   +----------------------------+ |
+                    |                    |             |
+                    |              ESP8266 BOARD       |
+                    |                                  |
+                    |  D1 (GPIO5)  D2 (GPIO4)          |
+                    |     |            |                |
+                    |     |            |                |
+                    +-----+------------+----------------+
+                          |            |
+                    +-----+------------+------+
+                    |     |            |      |
+                    |   TRIG         ECHO    |
+                    |   PIN          PIN     |
+                    |     |            |      |
+                    |   ULTRASONIC SENSOR     |
+                    |   (HC-SR04)             |
+                    |     |            |      |
+                    |    VCC          GND     |
+                    |     |            |      |
+                    +-----+------------+------+
+                          |            |
+                          +-----+------+
+                                |
+                           +----+----+
+                           |         |
+                        [5V]       [GND]
+                           |         |
+                        EXTERNAL POWER SUPPLY
+
+
+    PIN CONNECTIONS SUMMARY:
+    ======================================================
+    
+    COMPONENT          PIN           ESP8266 / POWER
+    ---------          ---           ---------------
+    
+    ULTRASONIC HC-SR04:
+    VCC                ------>       External 5V (+)
+    GND                ------>       External GND (-) & ESP GND
+    TRIG               ------>       D1 (GPIO5)
+    ECHO               ------>       D2 (GPIO4)
+    
+    SERVO MOTOR:
+    5V (Red)           ------>       External 5V (+)
+    GND (Brown/Black)  ------>       External GND (-)
+    SIGNAL (Yellow/Orange) -->       D5 (GPIO14)
+    
+    ESP8266 BOARD:
+    GND                ------>       External GND (-)
+    VIN (or 3.3V)      ------>       USB power (when programming)
+                                      or separate 3.3V supply
+    
+    POWER CONNECTIONS:
+    ======================================================
+    
+    EXTERNAL 5V SUPPLY:
+    (+) ---------------->  Servo 5V
+    (+) ---------------->  Ultrasonic VCC
+    (-) ---------------->  Servo GND
+    (-) ---------------->  Ultrasonic GND
+    (-) ---------------->  ESP8266 GND
+    
+    COLOR CODE GUIDE:
+    ======================================================
+    
+    RED   = 5V Power
+    BLACK = Ground (GND)
+    YELLOW = Signal wires
